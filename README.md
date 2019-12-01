@@ -5,7 +5,6 @@ This is an application to track a user's workouts.
 
 ### Description
 The user can keep track of the kind of workout they have done, the type, duration, weight, number of reps, number of sets, and where it was completed (at home vs at the gym). This application utilizes full CRUD capabilities, they can create a new exercise, view all exercises completed or a single one by ID, update a workout, or delete if necessary.
-An example of the output when searching for all exercises:
 ```
 {
        "id": 1,
@@ -123,4 +122,5 @@ An example of the output when searching for all exercises:
 		return exercise;
 	}
 ```
+
 * Test these routes using Postman
