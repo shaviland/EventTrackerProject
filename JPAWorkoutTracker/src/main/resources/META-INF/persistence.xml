@@ -8,7 +8,7 @@
     <provider>org.hibernate.jpa.HibernatePersistenceProvider </provider>
     
 	<!-- class definition -->
- 	<class>com.skilldistillery.workout.entities.</class>
+ 	<class>com.skilldistillery.workout.entities.Exercise</class>
  
  	
  	

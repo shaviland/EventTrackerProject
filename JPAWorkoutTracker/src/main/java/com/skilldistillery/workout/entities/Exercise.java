@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class exercise {
+public class Exercise {
 	
 	//FIELDS
 	
@@ -26,7 +26,7 @@ public class exercise {
 	
 	//CONSTRUCTORS
 	
-	public exercise(int id, String name, String type, int duration, int weight, int numReps, int numSets,
+	public Exercise(int id, String name, String type, int duration, int weight, int numReps, int numSets,
 			String place) {
 		super();
 		this.id = id;
@@ -39,7 +39,7 @@ public class exercise {
 		this.place = place;
 	}
 
-	public exercise() {
+	public Exercise() {
 		super();
 	}
 
@@ -134,7 +134,7 @@ public class exercise {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		exercise other = (exercise) obj;
+		Exercise other = (Exercise) obj;
 		if (duration != other.duration)
 			return false;
 		if (id != other.id)

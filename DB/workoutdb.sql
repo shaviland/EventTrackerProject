@@ -53,6 +53,7 @@ INSERT INTO `exercise` (`id`, `name`, `type`, `duration`, `weight`, `num_reps`, 
 INSERT INTO `exercise` (`id`, `name`, `type`, `duration`, `weight`, `num_reps`, `num_sets`, `place`) VALUES (3, 'lat pulls', 'weight training', NULL, 45, 12, '2', 'gym');
 INSERT INTO `exercise` (`id`, `name`, `type`, `duration`, `weight`, `num_reps`, `num_sets`, `place`) VALUES (4, 'push ups', 'bodyweight training', NULL, NULL, 25, '3', 'home');
 INSERT INTO `exercise` (`id`, `name`, `type`, `duration`, `weight`, `num_reps`, `num_sets`, `place`) VALUES (5, 'yoga', 'yoga', 60, NULL, NULL, NULL, 'yoga studio');
+INSERT INTO `exercise` (`id`, `name`, `type`, `duration`, `weight`, `num_reps`, `num_sets`, `place`) VALUES (6, 'circuit', 'weight endurance', 30, 45, 20, '2', 'gym');
 
 COMMIT;
 
