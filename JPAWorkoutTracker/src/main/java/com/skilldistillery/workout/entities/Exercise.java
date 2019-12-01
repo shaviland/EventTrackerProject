@@ -16,18 +16,23 @@ public class Exercise {
 	private int id;
 	private String name;
 	private String type;
-	private int duration;
-	private int weight;
+	private Integer duration;
+	private Integer weight;
 	@Column(name = "num_reps")
-	private int numReps;
+	private Integer numReps;
 	@Column(name = "num_sets")
-	private int numSets;
+	private Integer numSets;
 	private String place;
 	
 	//CONSTRUCTORS
 	
-	public Exercise(int id, String name, String type, int duration, int weight, int numReps, int numSets,
-			String place) {
+
+	public Exercise() {
+		super();
+	}
+
+	public Exercise(int id, String name, String type, Integer duration, Integer weight, Integer numReps,
+			Integer numSets, String place) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -39,12 +44,8 @@ public class Exercise {
 		this.place = place;
 	}
 
-	public Exercise() {
-		super();
-	}
-
 	//GETTERS AND SETTERS
-	
+
 	public int getId() {
 		return id;
 	}
@@ -69,35 +70,35 @@ public class Exercise {
 		this.type = type;
 	}
 
-	public int getDuration() {
+	public Integer getDuration() {
 		return duration;
 	}
 
-	public void setDuration(int duration) {
+	public void setDuration(Integer duration) {
 		this.duration = duration;
 	}
 
-	public int getWeight() {
+	public Integer getWeight() {
 		return weight;
 	}
 
-	public void setWeight(int weight) {
+	public void setWeight(Integer weight) {
 		this.weight = weight;
 	}
 
-	public int getNumReps() {
+	public Integer getNumReps() {
 		return numReps;
 	}
 
-	public void setNumReps(int numReps) {
+	public void setNumReps(Integer numReps) {
 		this.numReps = numReps;
 	}
 
-	public int getNumSets() {
+	public Integer getNumSets() {
 		return numSets;
 	}
 
-	public void setNumSets(int numSets) {
+	public void setNumSets(Integer numSets) {
 		this.numSets = numSets;
 	}
 
@@ -108,21 +109,21 @@ public class Exercise {
 	public void setPlace(String place) {
 		this.place = place;
 	}
-	
+
 	//HASHCODE AND EQUALS
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + duration;
+		result = prime * result + ((duration == null) ? 0 : duration.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + numReps;
-		result = prime * result + numSets;
+		result = prime * result + ((numReps == null) ? 0 : numReps.hashCode());
+		result = prime * result + ((numSets == null) ? 0 : numSets.hashCode());
 		result = prime * result + ((place == null) ? 0 : place.hashCode());
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
-		result = prime * result + weight;
+		result = prime * result + ((weight == null) ? 0 : weight.hashCode());
 		return result;
 	}
 
@@ -135,7 +136,10 @@ public class Exercise {
 		if (getClass() != obj.getClass())
 			return false;
 		Exercise other = (Exercise) obj;
-		if (duration != other.duration)
+		if (duration == null) {
+			if (other.duration != null)
+				return false;
+		} else if (!duration.equals(other.duration))
 			return false;
 		if (id != other.id)
 			return false;
@@ -144,9 +148,15 @@ public class Exercise {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (numReps != other.numReps)
+		if (numReps == null) {
+			if (other.numReps != null)
+				return false;
+		} else if (!numReps.equals(other.numReps))
 			return false;
-		if (numSets != other.numSets)
+		if (numSets == null) {
+			if (other.numSets != null)
+				return false;
+		} else if (!numSets.equals(other.numSets))
 			return false;
 		if (place == null) {
 			if (other.place != null)
@@ -158,11 +168,15 @@ public class Exercise {
 				return false;
 		} else if (!type.equals(other.type))
 			return false;
-		if (weight != other.weight)
+		if (weight == null) {
+			if (other.weight != null)
+				return false;
+		} else if (!weight.equals(other.weight))
 			return false;
 		return true;
 	}
-
+	
+	
 	//TOSTRING
 	
 	@Override
