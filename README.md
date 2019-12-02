@@ -89,6 +89,7 @@ The user can keep track of the kind of workout they have done, the type, duratio
 * Create a Gradle Project for the Exercise entity and tests.
 * Create a Spring Boot project for the REST API controller, service, and Spring Data JPA repository.
   * API REST endpoints:
+  ```
 | Return Type    | Route                     | Functionality               |
 | -------------- | ------------------------- | --------------------------- |
 | List<Exercise> | GET api/exercises         | Gets all exercises          |
@@ -96,7 +97,7 @@ The user can keep track of the kind of workout they have done, the type, duratio
 | Exercise       | POST api/exercises        | Creates new exercise        |
 | Exercise       | Put api/exercises/{id}    | Updates one exercise by ID  |
 | Boolean        | DELETE api/exercises/{id} | Deletes one exercise by ID  |
-
+```
 
 * Create controller logic to perform the basic CRUD operations of a REST API.
 * Test these routes using Postman
