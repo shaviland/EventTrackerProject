@@ -5,7 +5,7 @@ This is an application to track a user's workouts.
 
 ### Description
 The user can keep track of the kind of workout they have done, the type, duration, weight, number of reps, number of sets, and where it was completed (at home vs at the gym). This application utilizes full CRUD capabilities, they can create a new exercise, view all exercises completed or a single one by ID, update a workout, or delete if necessary.
-```
+```json
 {
        "id": 1,
        "name": "walking",
@@ -92,7 +92,7 @@ The user can keep track of the kind of workout they have done, the type, duratio
 * Test these routes using Postman
 
   * Controller example:
-  ```
+  ```java
   @Override
 	public Exercise updateExercise(Integer eid, Exercise exercise) {
 		Exercise updatedExercise = null;
@@ -125,7 +125,7 @@ The user can keep track of the kind of workout they have done, the type, duratio
 	}
 ```
 * API REST endpoints:
-```
+```table
 | Return Type    | Route                     | Functionality               |
 | -------------- | ------------------------- | --------------------------- |
 | List<Exercise> | GET api/exercises         | Gets all exercises          |
