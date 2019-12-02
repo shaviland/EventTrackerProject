@@ -125,7 +125,7 @@ The user can keep track of the kind of workout they have done, the type, duratio
 	}
 ```
 * API REST endpoints:
-```table
+```
 | Return Type    | Route                     | Functionality               |
 | -------------- | ------------------------- | --------------------------- |
 | List<Exercise> | GET api/exercises         | Gets all exercises          |
