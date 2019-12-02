@@ -69,7 +69,6 @@ The user can keep track of the kind of workout they have done, the type, duratio
    ```
 
 ### API REST endpoints
-* 
 
    ```
    | Return Type    | Route                     | Functionality               |
