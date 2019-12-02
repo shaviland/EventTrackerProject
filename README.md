@@ -70,15 +70,15 @@ The user can keep track of the kind of workout they have done, the type, duratio
 
 ### API REST endpoints
 
-   ```
+
    | Return Type    | Route                     | Functionality               |
    | -------------- | ------------------------- | --------------------------- |
-   | List<Exercise> | GET api/exercises         | Gets all exercises          |
-   | Exercise       | GET api/exercise/{id}     | Gets one exercise by ID     |
-   | Exercise       | POST api/exercises        | Creates new exercise        |
-   | Exercise       | Put api/exercises/{id}    | Updates one exercise by ID  |
-   | Boolean        | DELETE api/exercises/{id} | Deletes one exercise by ID  |
-   ```
+   | 'List<Exercise>' | 'GET api/exercises'         | Gets all exercises          |
+   | 'Exercise'       | 'GET api/exercise/{id}'     | Gets one exercise by ID     |
+   | 'Exercise'       | 'POST api/exercises'        | Creates new exercise        |
+   | 'Exercise'       | 'Put api/exercises/{id}'    | Updates one exercise by ID  |
+   | 'Boolean'        | 'DELETE api/exercises/{id}' | Deletes one exercise by ID  |
+
 
 
 ### Technologies Used
