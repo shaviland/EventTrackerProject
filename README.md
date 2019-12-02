@@ -98,6 +98,8 @@ The user can keep track of the kind of workout they have done, the type, duratio
 | Exercise       | Put api/exercises/{id}    | Updates one exercise by ID  |
 | Boolean        | DELETE api/exercises/{id} | Deletes one exercise by ID  |
 ```
+```
+```
 
 * Create controller logic to perform the basic CRUD operations of a REST API.
 * Test these routes using Postman
