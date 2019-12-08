@@ -77,7 +77,7 @@ The user can keep track of the kind of workout they have done, the type, duratio
    | Exercise       | GET api/exercise/{id}     | Gets one exercise by ID     |
    | Exercise       | POST api/exercises        | Creates new exercise        |
    | Exercise       | Put api/exercises/{id}    | Updates one exercise by ID  |
-   | Boolean        | DELETE api/exercises/{id} | Deletes one exercise by ID  |
+   | Boolean        | DELETE api/exercises/{id}z | Deletes one exercise by ID  |
 
 
 
