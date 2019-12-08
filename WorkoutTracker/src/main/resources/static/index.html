@@ -1,13 +1,34 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Workout Tracker</title>
-    <script type="text/javascript" src="js/script.js"></script>
-  </head>
-  <body>
-  	<h1>Workout Tracker</h1>
-  	<div id = "workoutList"></div>
-  
-  </body>
+<head>
+<meta charset="utf-8">
+<title>Workout Tracker</title>
+<script type="text/javascript" src="js/script.js"></script>
+</head>
+<body>
+	<h1>Workout Tracker</h1>
+	<div id="workoutList"></div>
+	<div id="createWorkout">
+<!-- 		private String name;
+	private String type;
+	private Integer duration;
+	private Integer weight;
+	@Column(name = "num_reps")
+	private Integer numReps;
+	@Column(name = "num_sets")
+	private Integer numSets;
+	private String place; -->
+		<form name="addWorkoutForm">
+			<input type="text" name="name" placeholder="Exercise Name" /> 
+			<input type="text" name="type" placeholder="Exercise Type" />
+			<input type="text" name="duration" placeholder="duration" />
+			<input type="text" name="weight" placeholder="Weight (in lbs)" />
+			<input type="text" name="numReps" placeholder="Number of Reps" />
+			<input type="text" name="numSets" placeholder="Number of Sets" />
+			<input type="text" name="place" placeholder="Place" />
+			<button name="create">Add</button>
+		</form>
+	</div>
+
+</body>
 </html>
