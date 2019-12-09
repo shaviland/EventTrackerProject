@@ -11,29 +11,7 @@ function init(){
 	showAverageDuration();
 });
 }
-//function showAverageDuration(){
-//let xhr = new XMLHttpRequest();
-//let durationDiv = document.getElementById('averageWorkoutTime');
-//let durationAvg = document.createElement('h3');
-//	
-//	xhr.open('GET', 'http://localhost:8090/api/exercises/avg', true);
-//	xhr.onreadystatechange = function() {
-//		if (xhr.readyState === 4 && xhr.status < 400) {
-//			let workoutDuration = JSON.parse(xhr.responseText);
-//			durationAvg.textContent = "The average duration working out is " + workoutDuration + " minutes."
-//			durationDiv.appendChild(durationAvg);
-//			console.log(workoutDuration);
-//			
-//		}
-//		if (xhr.readyState === 4 && xhr.status >= 400) {
-//			console.error(xhr.status + ': ' + xhr.responseText);
-//			let dataDiv = document.getElementById('averageWorkoutTime');
-//			dataDiv.textContent = 'Error averaging duration';
-//		}
-//	};
-//	xhr.send(null);
-//	
-//}
+
 function displayAvgDuration(workouts){
 //	console.log(workouts);
 	let workoutTotal = 0;
@@ -46,7 +24,7 @@ function displayAvgDuration(workouts){
 	console.log(avgDuration);
 	let durationDiv = document.getElementById('averageWorkoutTime');
 	let durationAvgOut = document.createElement('h3');
-	durationAvgOut.textContent = "The average duration working out is " + avgDuration + " minutes."
+	durationAvgOut.textContent = "The average workout duration is " + avgDuration + " minutes."
 	durationDiv.appendChild(durationAvgOut);
 	
 }
@@ -117,6 +95,7 @@ function displayAllWorkouts(workouts){
 		  let workoutData = document.createElement("TR");
 		  workoutData.addEventListener('click', function(e){
 			  clearTable();
+			  document.getElementById("averageWorkoutTime").style.display = "none";
 			  getWorkout(workouts[i].id);
 			  
 		  });
