@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `exercise` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(200) NOT NULL,
   `type` VARCHAR(200) NOT NULL,
-  `duration` INT NULL,
+  `duration` INT NOT NULL,
   `weight` INT NULL,
   `num_reps` INT NULL,
   `num_sets` VARCHAR(45) NULL,
@@ -49,9 +49,9 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 START TRANSACTION;
 USE `workoutdb`;
 INSERT INTO `exercise` (`id`, `name`, `type`, `duration`, `weight`, `num_reps`, `num_sets`, `place`) VALUES (1, 'walking', 'aerobic', 15, NULL, NULL, NULL, 'gym');
-INSERT INTO `exercise` (`id`, `name`, `type`, `duration`, `weight`, `num_reps`, `num_sets`, `place`) VALUES (2, 'bicep curls', 'weight training', NULL, 45, 12, '2', 'gym');
-INSERT INTO `exercise` (`id`, `name`, `type`, `duration`, `weight`, `num_reps`, `num_sets`, `place`) VALUES (3, 'lat pulls', 'weight training', NULL, 45, 12, '2', 'gym');
-INSERT INTO `exercise` (`id`, `name`, `type`, `duration`, `weight`, `num_reps`, `num_sets`, `place`) VALUES (4, 'push ups', 'bodyweight training', NULL, NULL, 25, '3', 'home');
+INSERT INTO `exercise` (`id`, `name`, `type`, `duration`, `weight`, `num_reps`, `num_sets`, `place`) VALUES (2, 'bicep curls', 'weight training', 5, 45, 12, '2', 'gym');
+INSERT INTO `exercise` (`id`, `name`, `type`, `duration`, `weight`, `num_reps`, `num_sets`, `place`) VALUES (3, 'lat pulls', 'weight training', 5, 45, 12, '2', 'gym');
+INSERT INTO `exercise` (`id`, `name`, `type`, `duration`, `weight`, `num_reps`, `num_sets`, `place`) VALUES (4, 'push ups', 'bodyweight training', 10, NULL, 25, '3', 'home');
 INSERT INTO `exercise` (`id`, `name`, `type`, `duration`, `weight`, `num_reps`, `num_sets`, `place`) VALUES (5, 'yoga', 'yoga', 60, NULL, NULL, NULL, 'yoga studio');
 INSERT INTO `exercise` (`id`, `name`, `type`, `duration`, `weight`, `num_reps`, `num_sets`, `place`) VALUES (6, 'circuit', 'weight endurance', 30, 45, 20, '2', 'gym');
 

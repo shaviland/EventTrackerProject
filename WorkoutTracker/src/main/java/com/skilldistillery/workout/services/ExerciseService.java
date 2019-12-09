@@ -10,5 +10,6 @@ public interface ExerciseService {
 	boolean delete(Integer eid);
 	Exercise updateExercise(Integer eid, Exercise exercise);
 	Exercise findExerciseById(Integer eid);
+	int findAvgWorkoutTime();
 
 }

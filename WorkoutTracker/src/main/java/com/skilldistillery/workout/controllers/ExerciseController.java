@@ -94,5 +94,9 @@ public class ExerciseController {
 			resp.setStatus(400);
 		}
 	}
+	@GetMapping("exercises/avg")
+	public int workoutAverage() {
+		return svc.findAvgWorkoutTime();
+	}
 
 }

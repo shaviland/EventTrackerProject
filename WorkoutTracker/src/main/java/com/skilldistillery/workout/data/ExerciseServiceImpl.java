@@ -71,4 +71,15 @@ public class ExerciseServiceImpl implements ExerciseService {
 		return exercise;
 	}
 
+	@Override
+	public int findAvgWorkoutTime() {
+		List<Exercise> workouts = repo.findAll();
+		int workoutTimeTotal = 0;
+		for(Exercise workout : workouts) {
+			workoutTimeTotal += workout.getDuration();
+		}
+		int workoutAvg = workoutTimeTotal/workouts.size();
+		return workoutAvg;
+	}
+
 }
