@@ -5,85 +5,89 @@ window.addEventListener('load', function(e){
 
 function init(){
 	getWorkouts();
-	
 	document.addWorkoutForm.create.addEventListener('click', function(event) {
 		event.preventDefault();
 		addNewWorkout();
 	});
 }
 function getWorkouts(){
-	//returns a list of all workouts in the database
-	var xhr = new XMLHttpRequest();
+	// returns a list of all workouts in the database
+	let xhr = new XMLHttpRequest();
 	
 	xhr.open('GET', 'http://localhost:8090/api/exercises/', true);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4 && xhr.status < 400) {
-			var workouts = JSON.parse(xhr.responseText);
-			displayWorkout(workouts);
+			let workouts = JSON.parse(xhr.responseText);
+			displayAllWorkouts(workouts);
 		}
 		if (xhr.readyState === 4 && xhr.status >= 400) {
 			console.error(xhr.status + ': ' + xhr.responseText);
-			var dataDiv = document.getElementById('workoutList');
+			let dataDiv = document.getElementById('workoutList');
 			dataDiv.textContent = 'No Workouts Found';
 		}
 	};
 	xhr.send(null);
 	
 }
-function displayWorkout(workouts){
-//table of all workouts
-	var workoutData = document.getElementById("workoutList");
+function displayAllWorkouts(workouts){
+// table of all workouts
+	let workoutData = document.getElementById("workoutList");
 	
 	
 	
-	 var workoutTbl = document.createElement("TABLE");
+	 let workoutTbl = document.createElement("TABLE");
 	 workoutTbl.setAttribute("id", "workoutTable");
 	  workoutData.appendChild(workoutTbl);
 
 
-	  var workoutTitles= document.createElement("TR");
+	  let workoutTitles= document.createElement("TR");
 	  workoutTbl.appendChild(workoutTitles);
 
-	  var name = document.createElement("TD");
+	  let name = document.createElement("TD");
 	  name.textContent = "Exercise Name";
 	  name.style.fontWeight = "bold";
 	  workoutTitles.appendChild(name);
-	  var type = document.createElement("TD");
+	  let type = document.createElement("TD");
 	  type.textContent = "Workout Type";
 	  type.style.fontWeight = "bold";
 	  workoutTitles.appendChild(type);
-	  var dur = document.createElement("TD");
+	  let dur = document.createElement("TD");
 	  dur.textContent = "Duration";
 	  dur.style.fontWeight = "bold";
 	  workoutTitles.appendChild(dur);
-	  var weight = document.createElement("TD");
+	  let weight = document.createElement("TD");
 	  weight.textContent = "Weight (in lbs)";
 	  weight.style.fontWeight = "bold";
 	  workoutTitles.appendChild(weight);
-	  var numReps = document.createElement("TD");
+	  let numReps = document.createElement("TD");
 	  numReps.textContent = "Number of Reps";
 	  numReps.style.fontWeight = "bold";
 	  workoutTitles.appendChild(numReps);
-	  var numSets = document.createElement("TD");
+	  let numSets = document.createElement("TD");
 	  numSets.textContent = "Number of Sets";
 	  numSets.style.fontWeight = "bold";
 	  workoutTitles.appendChild(numSets);
-	  var place = document.createElement("TD");
+	  let place = document.createElement("TD");
 	  place.textContent = "Place";
 	  place.style.fontWeight = "bold";
 	  workoutTitles.appendChild(place);
 	  
 	  for (let i = 0; i < workouts.length; i++){
-		  var workoutData = document.createElement("TR");
+		  let workoutData = document.createElement("TR");
+		  workoutData.addEventListener('click', function(e){
+			  clearTable();
+			  getWorkout(workouts[i].id);
+			  
+		  });
 		  workoutTbl.appendChild(workoutData);
 
-		  var nameData = document.createElement("TD");
+		  let nameData = document.createElement("TD");
 		  nameData.textContent = workouts[i].name;
 		  workoutData.appendChild(nameData);
-		  var typeData = document.createElement("TD");
+		  let typeData = document.createElement("TD");
 		  typeData.textContent = workouts[i].type;
 		  workoutData.appendChild(typeData);
-		  var durData = document.createElement("TD");
+		  let durData = document.createElement("TD");
 		  if(workouts[i].duration === null){
 			  durData.textContent = "";
 			  workoutData.appendChild(durData);
@@ -92,7 +96,7 @@ function displayWorkout(workouts){
 		  durData.textContent = workouts[i].duration + " minutes";
 		  workoutData.appendChild(durData);
 		  }
-		  var weightData = document.createElement("TD");
+		  let weightData = document.createElement("TD");
 		  if(workouts[i].weight === null){
 			  weightData.textContent = "";
 			  workoutData.appendChild(weightData);
@@ -101,20 +105,21 @@ function displayWorkout(workouts){
 		  weightData.textContent = workouts[i].weight + " lbs";
 		  workoutData.appendChild(weightData);
 		  }
-		  var numRepsData = document.createElement("TD");
+		  let numRepsData = document.createElement("TD");
 		  numRepsData.textContent = workouts[i].numReps;
 		  workoutData.appendChild(numRepsData);
-		  var numSetsData = document.createElement("TD");
+		  let numSetsData = document.createElement("TD");
 		  numSetsData.textContent = workouts[i].numSets;
 		  workoutData.appendChild(numSetsData);
-		  var placeData = document.createElement("TD");
+		  let placeData = document.createElement("TD");
 		  placeData.textContent = workouts[i].place;
 		  workoutData.appendChild(placeData);
 		  
 	  }
+	  
 }
 function addNewWorkout(){
-	var xhr = new XMLHttpRequest();
+	let xhr = new XMLHttpRequest();
 	xhr.open('POST', 'http://localhost:8090/api/exercises', true);
 	xhr.setRequestHeader("Content-type", "application/json");
 	xhr.onreadystatechange = function() {
@@ -125,14 +130,14 @@ function addNewWorkout(){
 		}
 		if (xhr.readyState === 4 && xhr.status >= 400) {
 			console.error(xhr.status + ': ' + xhr.responseText);
-			var dataDiv = document.getElementById('createWorkout');
+			let dataDiv = document.getElementById('createWorkout');
 			dataDiv.textContent = 'Error Adding Workout';
 		}
 	};
 
 	
 	let form = document.addWorkoutForm;
-	var newWorkout = {
+	let newWorkout = {
 		name : form.name.value,
 		type : form.type.value,
 		duration : form.duration.value,
@@ -142,21 +147,255 @@ function addNewWorkout(){
 		place : form.place.value
 		
 	};
-	var newWorkoutJsonString = JSON.stringify(newWorkout); 
+	let newWorkoutJsonString = JSON.stringify(newWorkout); 
 	xhr.send(newWorkoutJsonString);
 	
 }
 function clearTable() {
-	//clears table so that it can be reloaded with updated database information
+	// clears table so that it can be reloaded with updated database information
 		let table = document.getElementById('workoutList');
 		while (table.firstElementChild) {
 			table.removeChild(table.firstElementChild);
 		}
 	}
+function getWorkout(exerciseId) {
+
+	let xhr = new XMLHttpRequest();
+	xhr.open('GET', 'http://localhost:8090/api/exercises/' + exerciseId, true);
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4 && xhr.status < 400) {
+			let exerciseObject = JSON.parse(xhr.responseText);
+			displayExercise(exerciseObject);
+		}
+		if (xhr.readyState === 4 && xhr.status >= 400) {
+			console.error(xhr.status + ': ' + xhr.responseText);
+			let dataDiv = document.getElementById('exerciseDetail');
+			dataDiv.textContent = 'Exercise Not Found';
+		}
+	};
+	xhr.send(null);
+}
 
 
+function displayExercise(exercise){
+	let exerciseDataDiv = document.getElementById('exerciseDetail')
+	let title = document.createElement('h1');
+	title.textContent = 'Workout Detail';
+	exerciseDataDiv.appendChild(title);
+	let workoutDataDetail = document.createElement('ul');
+	exerciseDataDiv.appendChild(workoutDataDetail);
+	
+	 let nameData = document.createElement("li");
+	  nameData.textContent = "Name of Exercise: " + exercise.name;
+	  workoutDataDetail.appendChild(nameData);
+	  let typeData = document.createElement("li");
+	  typeData.textContent = "Type of workout: " + exercise.type;
+	  workoutDataDetail.appendChild(typeData);
+	  
+	  if(exercise.duration !== null){
+		  let durData = document.createElement("li");
+		  durData.textContent = "Duration: " + exercise.duration + " minutes";
+		  workoutDataDetail.appendChild(durData);
+	  }
+	  
+	  if(exercise.weight !== null){
+		  let weightData = document.createElement("li");
+		  weightData.textContent = "Wight: " + exercise.weight + " lbs";
+		  workoutDataDetail.appendChild(weightData);
+	  }
+	  if(exercise.numReps !== null){
+	  let numRepsData = document.createElement("li");
+	  numRepsData.textContent = "Number of Reps: " + exercise.numReps;
+	  workoutDataDetail.appendChild(numRepsData);
+	  }
+	  if(exercise.numSets !== null){
+	  let numSetsData = document.createElement("li");
+	  numSetsData.textContent = "Number of Sets: " + exercise.numSets;
+	  workoutDataDetail.appendChild(numSetsData);
+	  }
+	  let placeData = document.createElement("li");
+	  placeData.textContent = "Place: " + exercise.place;
+	  workoutDataDetail.appendChild(placeData);
+	  //removes create workout form
+//	  let addDataDiv = document.getElementById('createWorkout')
+	  document.getElementById("createWorkout").style.display = "none";
+	  
+	  //adds Edit workout button
+	  let editButton = document.createElement('BUTTON');
+	  editButton.textContent = 'Edit Workout';
+	  exerciseDataDiv.appendChild(editButton);
+	  editButton.addEventListener('click', function(e){
+		  editExerciseForm(exercise);
+		  document.getElementById("exerciseDetail").style.display = "none";
+	  });
+	  
+	  //adds Delete workout button
+	  let deleteButton = document.createElement('BUTTON');
+	  deleteButton.textContent = 'Delete Workout';
+	  exerciseDataDiv.appendChild(deleteButton);
+	  deleteButton.addEventListener('click', function(e){
+		  e.preventDefault();
+		  console.log('delete' + exercise.name);
+		  console.log(exercise.id);
+		 let exerciseId = exercise.id;
+		 if (!isNaN(exerciseId) && exerciseId > 0) {
+			 deleteWorkout(exerciseId);
+			 document.body.removeChild(exerciseDataDiv);
+		 }
+		 
+		  
+	  })
+	  
+	  
+}
+
+function editExerciseForm(exercise){
+	console.log(exercise.name);
 
 
+	let edit = document.getElementById('editExercise')
+	let editWorkoutForm = document.createElement('form');
+	editWorkoutForm.setAttribute('name', 'editWorkoutForm');
+	editWorkoutForm.setAttribute('id', 'editWorkoutForm')
+	edit.appendChild(editWorkoutForm);
+	let exerciseId = document.createElement("INPUT");
+	exerciseId.type = 'hidden';
+	exerciseId.name = 'id';
+	exerciseId.value = exercise.id;
+	editWorkoutForm.appendChild(exerciseId);
+	
+	 let exerciseName = document.createElement("INPUT");
+	 exerciseName.type = 'text';
+	 exerciseName.name = 'name';
+	 exerciseName.value = exercise.name;
+	 editWorkoutForm.appendChild(exerciseName);
+	 
+	 let exerciseType = document.createElement("INPUT");
+	 exerciseType.type = 'text';
+	 exerciseType.name = 'type';
+	 exerciseType.value = exercise.type;
+	 editWorkoutForm.appendChild(exerciseType);
+	 
+	 let exerciseDuration = document.createElement("INPUT");
+	 exerciseDuration.type = 'text';
+	 exerciseDuration.name = 'duration';
+	 if(exercise.duration === null || exercise.duration === undefined || exercise.duration === ''){
+		 exerciseDuration.placeholder = 'Duration';
+		 editWorkoutForm.appendChild(exerciseDuration);
+	 }else{
+		 exerciseDuration.value = exercise.duration;
+		 editWorkoutForm.appendChild(exerciseDuration);
+	 }
+	 
+	 let exerciseWeight = document.createElement("INPUT");
+	 exerciseWeight.type = 'text';
+	 exerciseWeight.name = 'weight';
+	 
+	 if(exercise.weight === null || exercise.weight === undefined || exercise.weight === ''){
+		 exerciseWeight.placeholder = 'Weight';
+		 editWorkoutForm.appendChild(exerciseWeight);
+	 }else{
+		 exerciseWeight.value = exercise.weight;
+		 editWorkoutForm.appendChild(exerciseWeight);
+	 }
+	 
+	 
+	 let exerciseNumReps = document.createElement("INPUT");
+	 exerciseNumReps.type = 'text';
+	 exerciseNumReps.name = 'numReps';
+	 if(exercise.numReps === null || exercise.numReps === undefined || exercise.numReps === ''){
+		 exerciseNumReps.placeholder = 'Number of Reps';
+		 editWorkoutForm.appendChild(exerciseNumReps);
+	 }else{
+		 exerciseNumReps.value = exercise.numReps;
+		 
+		 editWorkoutForm.appendChild(exerciseNumReps);
+	 }
+	 
+	 let exerciseNumSets = document.createElement("INPUT");
+	 exerciseNumSets.type = 'text';
+	 exerciseNumSets.name = 'numSets';
+	 if(exercise.numSets === null || exercise.numSets === undefined || exercise.numSets === ''){
+		 exerciseNumSets.placeholder = 'Number of Sets';
+		 console.log("stuff " + exercise.numSets);
+		 editWorkoutForm.appendChild(exerciseNumSets);
+	 }else{
+		 exerciseNumSets.value = exercise.numSets;
+		 
+		 editWorkoutForm.appendChild(exerciseNumSets);
+	 }
+	 
+	 let exercisePlace = document.createElement("INPUT");
+	 exercisePlace.type = 'text';
+	 exercisePlace.name = 'place';
+	 exercisePlace.value = exercise.place;
+	 editWorkoutForm.appendChild(exercisePlace);
+
+	 let updateBtn = document.createElement("INPUT");
+	 updateBtn.setAttribute("type", "submit");
+	 updateBtn.setAttribute("name", "update");
+	 updateBtn.setAttribute("value", "Update");
+	 
+	 editWorkoutForm.appendChild(updateBtn);
+	  updateBtn.addEventListener('click', function(e){
+		  e.preventDefault();
+	
+
+		  let xhr = new XMLHttpRequest();
+			xhr.open('PUT', 'http://localhost:8090/api/exercises/' + exercise.id, true);
+			xhr.setRequestHeader("Content-type", "application/json");
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState === 4 && xhr.status < 400) {
+					clearTable();
+					form.reset();
+					init();
+				}
+				if (xhr.readyState === 4 && xhr.status >= 400) {
+					console.error(xhr.status + ': ' + xhr.responseText);
+					let dataDiv = document.getElementById('editExercise');
+					dataDiv.textContent = 'Error Editing Workout';
+				}
+			};
+			
+			console.log(exercise.duration);
+		
+		let form = document.editWorkoutForm;
+			let editedWorkout = {
+					id : document.editWorkoutForm.id.value,
+					name : document.editWorkoutForm.name.value,
+					type : document.editWorkoutForm.type.value,
+					duration : document.editWorkoutForm.duration.value,
+					weight : document.editWorkoutForm.weight.value,
+					numReps : document.editWorkoutForm.numReps.value,
+					numSets : document.editWorkoutForm.numSets.value,
+					place : document.editWorkoutForm.place.value
+					
+				};
+				let editedWorkoutJsonString = JSON.stringify(editedWorkout); 
+				xhr.send(editedWorkoutJsonString);
+
+		document.body.removeChild(edit);
+		init();
+	  });
+} 
+function deleteWorkout(exerciseId){
+	
+		console.log(exerciseId);
+		   var xhr = new XMLHttpRequest();
+		   xhr.open('DELETE', 'http://localhost:8090/api/exercises/' + exerciseId, true);
+		   xhr.onreadystatechange = function() {
+			      if (xhr.readyState === 4 && xhr.status < 400) {
+			    	  document.getElementById("createWorkout").style.display = "inline"
+			    	  init();
+			      }
+			      if (xhr.readyState === 4 && xhr.status >= 400) {
+			         console.error(xhr.status + ': ' + xhr.responseText);
+			      }
+			   };
+			   xhr.send(null);
+}
+
+	 
 
 
 
