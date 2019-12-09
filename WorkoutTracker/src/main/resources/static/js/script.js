@@ -6,9 +6,9 @@ window.addEventListener('load', function(e){
 function init(){
 	getWorkouts();
 	document.addWorkoutForm.create.addEventListener('click', function(event) {
-		event.preventDefault();
-		addNewWorkout();
-	});
+	event.preventDefault();
+	addNewWorkout();
+});
 }
 function getWorkouts(){
 	// returns a list of all workouts in the database
@@ -124,8 +124,7 @@ function addNewWorkout(){
 	xhr.setRequestHeader("Content-type", "application/json");
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4 && xhr.status < 400) {
-			clearTable();
-			init();
+			location.reload();
 			form.reset();
 		}
 		if (xhr.readyState === 4 && xhr.status >= 400) {
@@ -374,8 +373,7 @@ function editExerciseForm(exercise){
 				let editedWorkoutJsonString = JSON.stringify(editedWorkout); 
 				xhr.send(editedWorkoutJsonString);
 
-		document.body.removeChild(edit);
-		init();
+				location.reload();
 	  });
 } 
 function deleteWorkout(exerciseId){
@@ -385,8 +383,7 @@ function deleteWorkout(exerciseId){
 		   xhr.open('DELETE', 'http://localhost:8090/api/exercises/' + exerciseId, true);
 		   xhr.onreadystatechange = function() {
 			      if (xhr.readyState === 4 && xhr.status < 400) {
-			    	  document.getElementById("createWorkout").style.display = "inline"
-			    	  init();
+			    	  location.reload();
 			      }
 			      if (xhr.readyState === 4 && xhr.status >= 400) {
 			         console.error(xhr.status + ': ' + xhr.responseText);
