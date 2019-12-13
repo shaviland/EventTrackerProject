@@ -32,7 +32,7 @@ function getWorkouts(){
 	// returns a list of all workouts in the database
 	let xhr = new XMLHttpRequest();
 	
-	xhr.open('GET', 'http://localhost:8090/api/exercises/', true);
+	xhr.open('GET', 'api/exercises/', true);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4 && xhr.status < 400) {
 			let workouts = JSON.parse(xhr.responseText);
@@ -140,7 +140,7 @@ function displayAllWorkouts(workouts){
 }
 function addNewWorkout(){
 	let xhr = new XMLHttpRequest();
-	xhr.open('POST', 'http://localhost:8090/api/exercises', true);
+	xhr.open('POST', 'api/exercises', true);
 	xhr.setRequestHeader("Content-type", "application/json");
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4 && xhr.status < 400) {
@@ -180,7 +180,7 @@ function clearTable() {
 function getWorkout(exerciseId) {
 
 	let xhr = new XMLHttpRequest();
-	xhr.open('GET', 'http://localhost:8090/api/exercises/' + exerciseId, true);
+	xhr.open('GET', 'api/exercises/' + exerciseId, true);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4 && xhr.status < 400) {
 			let exerciseObject = JSON.parse(xhr.responseText);
@@ -361,7 +361,7 @@ function editExerciseForm(exercise){
 	
 
 		  let xhr = new XMLHttpRequest();
-			xhr.open('PUT', 'http://localhost:8090/api/exercises/' + exercise.id, true);
+			xhr.open('PUT', 'api/exercises/' + exercise.id, true);
 			xhr.setRequestHeader("Content-type", "application/json");
 			xhr.onreadystatechange = function() {
 				if (xhr.readyState === 4 && xhr.status < 400) {
@@ -400,7 +400,7 @@ function deleteWorkout(exerciseId){
 	
 		console.log(exerciseId);
 		   var xhr = new XMLHttpRequest();
-		   xhr.open('DELETE', 'http://localhost:8090/api/exercises/' + exerciseId, true);
+		   xhr.open('DELETE', 'api/exercises/' + exerciseId, true);
 		   xhr.onreadystatechange = function() {
 			      if (xhr.readyState === 4 && xhr.status < 400) {
 			    	  location.reload();

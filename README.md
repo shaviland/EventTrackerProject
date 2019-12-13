@@ -103,6 +103,11 @@ The user can keep track of the kind of workout they have done, the type, duratio
 * Create a Spring Boot project for the REST API controller, service, and Spring Data JPA repository.
 * Create controller logic to perform the basic CRUD operations of a REST API.
 * Test these routes using Postman
+* Adding scripts to a web application
+* Send asynchronous requests to Java controllers with JavaScript's XMLHttpRequest
+* Consume and parse JSON responses with JavaScript
+* Build HTML with JavaScript
+* Send POST/PUT/DELETE requests with XMLHttpRequest
 
   * Controller example:
   ```java
