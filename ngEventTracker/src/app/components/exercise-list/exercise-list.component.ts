@@ -12,7 +12,7 @@ export class ExerciseListComponent implements OnInit {
   exercises: Exercise[] = [];
   selected: Exercise = null;
   updateExercise: Exercise = null;
-  newExercise: Exercise = new Exercise();
+
 
   // CONSTRUCTORS
   constructor(private exSvc: ExerciseService) {
@@ -75,20 +75,7 @@ export class ExerciseListComponent implements OnInit {
       }
     );
   }
-  addExercise(exercise: Exercise) {
-    this.exSvc.create(exercise).subscribe(
-      data => {
-        this.displayExercises();
-        this.newExercise = new Exercise();
-      },
-      err => {
-        console.error('TodoListComponent.loadTodoList(): error loading todo list');
-        console.error(err);
-      }
-    );
 
-
-  }
   getAveWorkoutDuration() {
     let workoutTotal = 0;
     for (const exercise of this.exercises) {

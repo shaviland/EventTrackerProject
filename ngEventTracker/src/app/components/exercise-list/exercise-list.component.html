@@ -1,70 +1,83 @@
-<table class="table table-striped table-hover" *ngIf= "!selected">
-  <tr>
-    <td><strong>Exercise Name</strong></td>
-    <td><strong>Workout Type</strong></td>
-    <td><strong>Duration</strong></td>
-    <td><strong>Weight (in lbs)</strong></td>
-    <td><strong>Number of Reps</strong></td>
-    <td><strong>Number of Sets</strong></td>
-    <td><strong>Place</strong></td>
-  </tr>
-  <tr *ngFor= "let exercise of exercises">
-    <td (click)="selectExercise(exercise)">{{exercise.name}}</td>
-    <td>{{exercise.type}}</td>
-    <td>{{exercise.duration}}</td>
-    <td>{{exercise.weight}}</td>
-    <td>{{exercise.numReps}}</td>
-    <td>{{exercise.numSets}}</td>
-    <td>{{exercise.place}}</td>
+<div class="container" id="exerciseTable">
+<table class="table table-bordered table-dark" *ngIf="!selected">
+  <thead>
+    <tr scope="row">
+      <td scope="col"><strong>Exercise Name</strong></td>
+      <td><strong scope="col">Workout Type</strong></td>
+      <td><strong scope="col">Duration</strong></td>
+      <td><strong scope="col">Weight (in lbs)</strong></td>
+      <td><strong scope="col">Number of Reps</strong></td>
+      <td><strong scope="col">Number of Sets</strong></td>
+      <td><strong scope="col">Place</strong></td>
+    </tr>
+  </thead>
+  <tr *ngFor="let exercise of exercises" scope="row">
+    <td (click)="selectExercise(exercise)">{{ exercise.name }}</td>
+    <td>{{ exercise.type }}</td>
+    <td>{{ exercise.duration }}</td>
+    <td>{{ exercise.weight }}</td>
+    <td>{{ exercise.numReps }}</td>
+    <td>{{ exercise.numSets }}</td>
+    <td>{{ exercise.place }}</td>
   </tr>
 </table>
-<div *ngIf="!selected">
-  <h3>Average Workout Duration: {{ getAveWorkoutDuration() | number:'1.0-0'}}</h3>
 </div>
-<form #newTaskForm="ngForm" *ngIf="!selected">
-    <input type="text" name="name" placeholder="Exercise Name" [(ngModel)]="newExercise.name" >
-    <input type="text" name="type" placeholder="Exercise Type" [(ngModel)]="newExercise.type" >
-    <input type="number" name="duration" placeholder="Exercise Duration" min="0" [(ngModel)]="newExercise.duration" >
-    <input type="number" name="weight" placeholder="Weight (in lbs)" min="0" [(ngModel)]="newExercise.weight" >
-    <input type="number" name="numReps" placeholder="Number of Reps" min="0" [(ngModel)]="newExercise.numReps" >
-    <input type="number" name="numSets" placeholder="Number of Sets" min="0" [(ngModel)]="newExercise.numSets" >
-    <input type="text" name="place" placeholder="Place" [(ngModel)]="newExercise.place" >
-    <input type="submit" value="Add Exercise" (click)="addExercise(newExercise)">
-  </form>
-<div *ngIf="selected && !updateExercise">
-  <h2>{{selected.name}}</h2>
-  <ul>
-    <li>Id: {{selected.id}}</li>
-    <li>Type: {{selected.type}}</li>
-    <li>Duration: {{selected.duration}}</li>
-    <li>Weight: {{selected.weight}}</li>
-    <li>Number of Reps: {{selected.numReps}}</li>
-    <li>Number of Sets: {{selected.numSets}}</li>
-    <li>Number of Place: {{selected.place}}</li>
+
+
+<div class="container-fluid" *ngIf="!selected" id="avgDuration">
+  <h3>
+    Average Workout Duration: <span class="badge badge-secondary">{{ getAveWorkoutDuration() | number: "1.0-0" }} minutes</span>
+  </h3>
+</div>
+<div class="container" *ngIf="selected && !updateExercise">
+  <h2>{{ selected.name }}</h2>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Id: {{ selected.id }}</li>
+    <li class="list-group-item">Type: {{ selected.type }}</li>
+    <li class="list-group-item">Duration: {{ selected.duration }}</li>
+    <li class="list-group-item">Weight: {{ selected.weight }}</li>
+    <li class="list-group-item">Number of Reps: {{ selected.numReps }}</li>
+    <li class="list-group-item">Number of Sets: {{ selected.numSets }}</li>
+    <li class="list-group-item">Number of Place: {{ selected.place }}</li>
   </ul>
-  <button (click)="setedit()">Edit</button>
-  <button (click)="deleteExercise(selected.id)">Delete</button>
-  <button (click)="displayAll()">Back</button>
+  <button type="button" class="btn btn-info" (click)="setedit()">Edit</button>
+  <button type="button" class="btn btn-danger" (click)="deleteExercise(selected.id)">Delete</button>
+  <button type="button" class="btn btn-success" (click)="displayAll()">Back</button>
 </div>
-<div *ngIf="updateExercise">
-  <h2>Exercise Id: {{updateExercise.id}}</h2>
+<div class="container" *ngIf="updateExercise">
+  <h2>Exercise Id: {{ updateExercise.id }}</h2>
   <form>
     <label for="name">Exercise Name</label>
-    <input type="text" name="name" [(ngModel)]="updateExercise.name"><br>
+    <input type="text" name="name" [(ngModel)]="updateExercise.name" /><br />
     <label for="type">Type</label>
-    <input type="text" name="type" [(ngModel)]="updateExercise.type"><br>
+    <input type="text" name="type" [(ngModel)]="updateExercise.type" /><br />
     <label for="duration">Duration</label>
-    <input type="number" name="duration"  [(ngModel)]="updateExercise.duration"><br>
+    <input
+      type="number"
+      name="duration"
+      [(ngModel)]="updateExercise.duration"
+    /><br />
     <label for="weight">Weight (in lbs)</label>
-    <input type="number" name="weight"  [(ngModel)]="updateExercise.weight"><br>
+    <input
+      type="number"
+      name="weight"
+      [(ngModel)]="updateExercise.weight"
+    /><br />
     <label for="numReps">Number of Reps</label>
-    <input type="number" name="numReps"  [(ngModel)]="updateExercise.numReps"><br>
+    <input
+      type="number"
+      name="numReps"
+      [(ngModel)]="updateExercise.numReps"
+    /><br />
     <label for="numSets">Number of Sets</label>
-    <input type="number" name="numSets"  [(ngModel)]="updateExercise.numSets"><br>
+    <input
+      type="number"
+      name="numSets"
+      [(ngModel)]="updateExercise.numSets"
+    /><br />
     <label for="place">Place</label>
-    <input type="text" name="place"  [(ngModel)]="updateExercise.place"><br>
+    <input type="text" name="place" [(ngModel)]="updateExercise.place" /><br />
     <button (click)="editExercise(updateExercise)">Save</button>
     <button (click)="updateExercise = null">Cancel</button>
-
   </form>
 </div>

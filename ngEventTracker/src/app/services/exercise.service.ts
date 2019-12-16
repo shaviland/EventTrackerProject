@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Exercise } from './../models/exercise';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
@@ -11,7 +12,7 @@ export class ExerciseService {
 
   // FIELDS
   exercises: Exercise[] = [];
-  baseUrl = 'http://localhost:8090/';
+  baseUrl = environment.baseUrl;
   url = this.baseUrl + 'api/exercises';
 
   // CONSTRUCTORS

@@ -1,1 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+#avgDuration{
+  margin-left: 30%;
+}
+#exerciseTable{
+  margin-top: 5%;
+}
+thead{
+  font-size: larger;
+  color:#34ebe8;
+  text-shadow: black 3px 3px;
+}
+.nav-item a{
+  color: #bdbfbf;
+  padding: 5px;
+}
+body{
+  background: #555661;
+}
+table{
+  box-shadow:#363838 5px 5px;
+}
+input{
+  margin-bottom: 5px;
+}

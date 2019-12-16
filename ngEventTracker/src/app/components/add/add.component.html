@@ -1,0 +1,61 @@
+<h1 id="addTitle">Add an Exercise</h1>
+
+<div class="container-fluid form-group">
+    <form #newExerciseForm="ngForm" *ngIf="!success">
+      <input
+        type="text"
+        name="name"
+        placeholder="Exercise Name"
+        [(ngModel)]="newExercise.name"
+      /><br>
+      <input
+        type="text"
+        name="type"
+        placeholder="Exercise Type"
+        [(ngModel)]="newExercise.type"
+      /><br>
+      <input
+        type="number"
+        name="duration"
+        placeholder="Exercise Duration"
+        min="0"
+        [(ngModel)]="newExercise.duration"
+      /><br>
+      <input
+        type="number"
+        name="weight"
+        placeholder="Weight (in lbs)"
+        min="0"
+        [(ngModel)]="newExercise.weight"
+      /><br>
+      <input
+        type="number"
+        name="numReps"
+        placeholder="Number of Reps"
+        min="0"
+        [(ngModel)]="newExercise.numReps"
+      /><br>
+      <input
+        type="number"
+        name="numSets"
+        placeholder="Number of Sets"
+        min="0"
+        [(ngModel)]="newExercise.numSets"
+      /><br>
+      <input
+        type="text"
+        name="place"
+        placeholder="Place"
+        [(ngModel)]="newExercise.place"
+      /><br>
+      <input
+        type="submit"
+        value="Add Exercise"
+        (click)="addExercise(newExercise)"
+      /><br>
+    </form>
+    </div>
+    <div id ="successOut" *ngIf="success">
+      <h1>Exercise added successfully</h1>
+    </div>
+
